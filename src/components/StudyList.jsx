@@ -1,20 +1,26 @@
-export default function StudyList({ items, selectedId, onSelect }) {
-  const dataList = items.map((item, index) => (
+export default function StudyList({ items, selectedId, onSelect, filterOption }) {
+  const dataList = filterOption === 'all' ? items : items.filter((item) => filterOption === item.category);
+  const lists = dataList.map((data, index) => (
     <li
-      key={item.id}
-      className={`card text-center ${selectedId === item.id ? 'active' : ''}`}
+      key={data.id}
+      className={`card text-center ${selectedId === data.id ? 'active' : ''}`}
       onClick={() => {
-        onSelect(item.id);
+        onSelect(data.id);
       }}
     >
       <div className="card-body">
-        <h5 className="card-title">{`${index + 1}. ${item.title}`}</h5>
-        <p className="card-text">{item.desc}</p>
-        <p className="card-text">분류 : {item.category}</p>
-        {selectedId === item.id && <p>선택된 항목입니다.</p>}
+        <h5 className="card-title">{`${index + 1}. ${data.title}`}</h5>
+        <p className="card-text">{data.desc}</p>
+        <p className="card-text">분류 : {data.category}</p>
+        {selectedId === data.id && <p>선택된 항목입니다.</p>}
       </div>
     </li>
   ));
-  console.log(dataList);
-  return <ul>{dataList}</ul>;
+
+  return (
+    <>
+      <h2 className="text-center">학습 목록</h2>
+      <ul>{lists}</ul>
+    </>
+  );
 }
