@@ -11,7 +11,7 @@ function App() {
   const [filterOption, setFilter] = useState('all');
 
   return (
-    <>
+    <div className="text-center">
       <h1>React Basic Review Mission 2</h1>
       <p>전체 학습 항목 수 : {data.length}</p>
       <StudyInfo title={data[0].title} desc={data[0].desc} category={data[0].category} />
@@ -28,7 +28,7 @@ function App() {
         }}
         filterOption={filterOption}
       />
-    </>
+    </div>
   );
 }
 
