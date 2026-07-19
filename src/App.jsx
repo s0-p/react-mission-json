@@ -9,7 +9,7 @@ import { useState } from 'react';
 function App() {
   console.log(data);
   const [selectedId, setSelectedId] = useState(null);
-  const [filterOption, setFilter] = useState('all');
+  const [category, setCategory] = useState('all');
   const [keyword, setKeyword] = useState('');
 
   return (
@@ -25,7 +25,7 @@ function App() {
       />
       <Filter
         onSelect={(option) => {
-          setFilter(option);
+          setCategory(option);
         }}
       />
       <StudyList
@@ -34,7 +34,7 @@ function App() {
         onSelect={(_selectedId) => {
           setSelectedId(_selectedId);
         }}
-        filterOption={filterOption}
+        category={category}
         keyword={keyword}
       />
     </div>

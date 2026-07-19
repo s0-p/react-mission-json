@@ -1,6 +1,6 @@
-export default function StudyList({ items, selectedId, onSelect, filterOption, keyword }) {
+export default function StudyList({ items, selectedId, onSelect, category, keyword }) {
   const dataList = items.filter((item) => {
-    const categoryMatch = filterOption === 'all' || filterOption === item.category;
+    const categoryMatch = category === 'all' || category === item.category;
     const keywordMatch = item.title.toLowerCase().includes(keyword.toLowerCase());
     return categoryMatch && keywordMatch;
   });
