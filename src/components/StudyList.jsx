@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 
 export default function StudyList({ items, selectedId, onSelect, category, keyword }) {
   const filteredData = useMemo(() => {
@@ -9,6 +9,10 @@ export default function StudyList({ items, selectedId, onSelect, category, keywo
     });
   }, [category, keyword]);
   const [favoriteIds, setFavoriteIds] = useState([]);
+  const handleToggleFavorite = useCallback((id) => {
+    setFavoriteIds((prev) => (prev.includes(id) ? prev.filter((itemId) => itemId !== id) : [...prev, id]));
+  }, []);
+
   const lists = filteredData.map((data, index) => (
     <li
       key={data.id}
@@ -21,17 +25,13 @@ export default function StudyList({ items, selectedId, onSelect, category, keywo
         <h5 className="card-title">{`${index + 1}. ${data.title}`}</h5>
         <p className="card-text">{data.desc}</p>
         <p className="card-text">분류 : {data.category}</p>
-        {selectedId === data.id && <p>선택된 항목입니다.</p>}
+        {/* {selectedId === data.id && <p>선택된 항목입니다.</p>} */}
       </div>
       <button
         onClick={() => {
-          setFavoriteIds((prev) =>
-            prev.includes(data.id) ? prev.filter((itemId) => itemId !== data.id) : [...prev, data.id],
-          );
+          handleToggleFavorite(data.id);
         }}
-      >
-        {`${favoriteIds.includes(data.id) ? '★ 즐겨찾기 해제' : '☆ 즐겨찾기'}`}
-      </button>
+      >{`${favoriteIds.includes(data.id) ? '★ 즐겨찾기 해제' : '☆ 즐겨찾기'}`}</button>
     </li>
   ));
 
