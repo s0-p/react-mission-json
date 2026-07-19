@@ -1,11 +1,13 @@
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 
 export default function StudyList({ items, selectedId, onSelect, category, keyword }) {
-  const filteredData = items.filter((item) => {
-    const categoryMatch = category === 'all' || category === item.category;
-    const keywordMatch = item.title.toLowerCase().includes(keyword.toLowerCase());
-    return categoryMatch && keywordMatch;
-  });
+  const filteredData = useMemo(() => {
+    return items.filter((item) => {
+      const categoryMatch = category === 'all' || category === item.category;
+      const keywordMatch = item.title.toLowerCase().includes(keyword.toLowerCase());
+      return categoryMatch && keywordMatch;
+    });
+  }, [category, keyword]);
   const [favoriteIds, setFavoriteIds] = useState([]);
   const lists = filteredData.map((data, index) => (
     <li
