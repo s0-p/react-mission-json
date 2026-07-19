@@ -1,5 +1,9 @@
-export default function StudyList({ items, selectedId, onSelect, filterOption }) {
-  const dataList = filterOption === 'all' ? items : items.filter((item) => filterOption === item.category);
+export default function StudyList({ items, selectedId, onSelect, filterOption, keyword }) {
+  const dataList = items.filter((item) => {
+    const categoryMatch = filterOption === 'all' || filterOption === item.category;
+    const keywordMatch = item.title.toLowerCase().includes(keyword.toLowerCase());
+    return categoryMatch && keywordMatch;
+  });
   const lists = dataList.map((data, index) => (
     <li
       key={data.id}
