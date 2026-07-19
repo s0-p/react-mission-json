@@ -1,10 +1,13 @@
+import { useState } from 'react';
+
 export default function StudyList({ items, selectedId, onSelect, category, keyword }) {
-  const dataList = items.filter((item) => {
+  const filteredData = items.filter((item) => {
     const categoryMatch = category === 'all' || category === item.category;
     const keywordMatch = item.title.toLowerCase().includes(keyword.toLowerCase());
     return categoryMatch && keywordMatch;
   });
-  const lists = dataList.map((data, index) => (
+  const [favoriteIds, setFavoriteIds] = useState([]);
+  const lists = filteredData.map((data, index) => (
     <li
       key={data.id}
       className={`card text-center ${selectedId === data.id ? 'active' : ''}`}
@@ -18,6 +21,15 @@ export default function StudyList({ items, selectedId, onSelect, category, keywo
         <p className="card-text">분류 : {data.category}</p>
         {selectedId === data.id && <p>선택된 항목입니다.</p>}
       </div>
+      <button
+        onClick={() => {
+          setFavoriteIds((prev) =>
+            prev.includes(data.id) ? prev.filter((itemId) => itemId !== data.id) : [...prev, data.id],
+          );
+        }}
+      >
+        {`${favoriteIds.includes(data.id) ? '★ 즐겨찾기 해제' : '☆ 즐겨찾기'}`}
+      </button>
     </li>
   ));
 

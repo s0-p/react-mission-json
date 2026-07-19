@@ -2,7 +2,7 @@ import './App.css';
 import data from './data/data.json';
 import StudyInfo from './components/StudyInfo';
 import StudyList from './components/StudyList';
-import Filter from './components/Filter';
+import Filter from './components/CategoryFilter';
 import SearchForm from './components/SearchForm';
 import { useState } from 'react';
 
