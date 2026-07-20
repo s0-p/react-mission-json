@@ -17,7 +17,7 @@ export default function StudyList({ items, selectedId, onSelect, category, keywo
   const lists = filteredData.map((data) => (
     <li
       key={data.id}
-      className={`card text-center ${selectedId === data.id ? 'active' : ''}`}
+      className={`card ${selectedId === data.id ? 'active' : ''}`}
       onClick={() => {
         onSelect(data.id);
       }}
@@ -29,7 +29,7 @@ export default function StudyList({ items, selectedId, onSelect, category, keywo
   return (
     <>
       <h2 className="text-center">학습 목록</h2>
-      <ul>{lists}</ul>
+      <ul className="d-flex-colums g-3">{lists}</ul>
     </>
   );
 }
