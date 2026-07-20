@@ -16,8 +16,8 @@ function App() {
     <div className="text-center">
       <h1>React Basic Review Mission 2</h1>
       <p>전체 학습 항목 수 : {data.length}</p>
-      <h2>검색</h2>
       <SearchForm
+        keyword={keyword}
         onChange={(keyword) => {
           setKeyword(keyword);
         }}
