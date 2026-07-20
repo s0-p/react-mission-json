@@ -22,7 +22,7 @@ export default function SearchForm({ keyword, onChange }) {
           />
         </div>
         <div className="col-auto">
-          <button className="btn btn btn-outline-dark" onClick={handleFocusSearch}>
+          <button className="btn btn-outline-dark" onClick={handleFocusSearch}>
             검색창으로 이동
           </button>
         </div>
