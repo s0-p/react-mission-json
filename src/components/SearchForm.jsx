@@ -2,9 +2,13 @@ import { useEffect, useRef, useState } from 'react';
 
 export default function SearchForm({ keyword, onChange }) {
   const searchInputRef = useRef(null);
-  const handleFocusSearch = useEffect(() => {
+  const handleFocusSearch = () => {
+    searchInputRef.current.focus();
+  };
+  useEffect(() => {
     searchInputRef.current.focus();
   }, []);
+
   return (
     <section>
       <h2>검색</h2>
