@@ -29,7 +29,7 @@ export default function StudyList({ items, selectedId, onSelect, category, keywo
   return (
     <>
       <h2 className="text-center">학습 목록</h2>
-      <ul className="d-flex-colums g-3">{lists}</ul>
+      <ul>{lists}</ul>
     </>
   );
 }
